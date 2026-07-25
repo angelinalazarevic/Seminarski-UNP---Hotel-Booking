@@ -1,2 +1,12 @@
-# Seminarski-UNP---Hotel-Booking
-https://www.kaggle.com/datasets/mojtaba142/hotel-booking   Skup podataka Hotel Booking sadrži informacije o rezervacijama u gradskim i resort hotelima.  Obuhvata različite atribute koji opisuju rezervacije, goste, smeštaj, način rezervisanja i prethodnu istoriju rezervacija. Za ciljnu promenljivu odabrana je kolona is_canceled.
+# Hotel Booking Dataset Analysis
+
+https://www.kaggle.com/datasets/mojtaba142/hotel-booking 
+
+Ovaj projekat predstavlja analizu skupa podataka Hotel Booking sa Kaggle platforme. Cilj rada je analiza faktora koji utiču na otkazivanje hotelskih rezervacija i izrada modela mašinskog učenja za predikciju promenljive `is_canceled`.
+
+## Struktura projekta
+
+- `data/` - skup podataka
+- `notebooks/` - Jupyter notebook sa analizom i modelima
+- `reports/` - predlog i završni izveštaj
+- `requirements.txt` - korišćene biblioteke
