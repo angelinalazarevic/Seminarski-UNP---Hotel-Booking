@@ -11578,7 +11578,13 @@ Broj kolona pre čišćenja: 36
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Broj uklonjenih rezervacija bez evidentiranih gostiju: 180
+<pre>Broj uklonjenih rezervacija bez evidentiranih gostiju:</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre> 180
 </pre>
 </div>
 </div>
@@ -16744,7 +16750,7 @@ Unakrsna validacija koristi samo trening skup.
 <td>0.0056</td>
 <td>0.9401</td>
 <td>0.0016</td>
-<td>3.4674</td>
+<td>3.5245</td>
 </tr>
 <tr>
 <th>1</th>
@@ -16759,7 +16765,7 @@ Unakrsna validacija koristi samo trening skup.
 <td>0.0072</td>
 <td>0.8137</td>
 <td>0.0051</td>
-<td>13.6195</td>
+<td>12.7652</td>
 </tr>
 <tr>
 <th>2</th>
@@ -16774,7 +16780,7 @@ Unakrsna validacija koristi samo trening skup.
 <td>0.0050</td>
 <td>0.9069</td>
 <td>0.0031</td>
-<td>2.9161</td>
+<td>2.6500</td>
 </tr>
 <tr>
 <th>3</th>
@@ -16789,7 +16795,7 @@ Unakrsna validacija koristi samo trening skup.
 <td>0.0035</td>
 <td>0.9278</td>
 <td>0.0018</td>
-<td>49.6043</td>
+<td>51.3980</td>
 </tr>
 <tr>
 <th>4</th>
@@ -16804,7 +16810,7 @@ Unakrsna validacija koristi samo trening skup.
 <td>0.0000</td>
 <td>0.5000</td>
 <td>0.0000</td>
-<td>0.7377</td>
+<td>0.6888</td>
 </tr>
 </tbody>
 </table>
@@ -17710,7 +17716,7 @@ XGBoost – top 10 -&gt; ['feature_selector', 'preprocessor', 'model']
 <td>0.0056</td>
 <td>0.9401</td>
 <td>0.0016</td>
-<td>3.4674</td>
+<td>3.5245</td>
 </tr>
 <tr>
 <th>1</th>
@@ -17727,7 +17733,7 @@ XGBoost – top 10 -&gt; ['feature_selector', 'preprocessor', 'model']
 <td>0.0050</td>
 <td>0.9372</td>
 <td>0.0019</td>
-<td>6.3252</td>
+<td>6.3363</td>
 </tr>
 <tr>
 <th>2</th>
@@ -17744,7 +17750,7 @@ XGBoost – top 10 -&gt; ['feature_selector', 'preprocessor', 'model']
 <td>0.0226</td>
 <td>0.9082</td>
 <td>0.0086</td>
-<td>5.8314</td>
+<td>5.8084</td>
 </tr>
 </tbody>
 </table>
@@ -17817,251 +17823,17 @@ XGBoost – top 10 -&gt; ['feature_selector', 'preprocessor', 'model']
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Stabilnost-izbora-izme%C4%91u-foldova">Stabilnost izbora između foldova<a class="anchor-link" href="#Stabilnost-izbora-izme%C4%91u-foldova">¶</a></h4><p>Selektor se posebno trenira u svakom od pet foldova. U tabeli se prikazuje koliko puta je svaka promenljiva izabrana među 20, odnosno 10 najvažnijih.</p>
-<p>Promenljive izabrane u svih pet foldova mogu se smatrati stabilnijim. Ako je promenljiva izabrana samo jednom ili dva puta, njen značaj više zavisi od konkretne podele trening podataka.</p>
+<h4 id="Izbor-najbolje-varijante-pobedni%C4%8Dkog-modela">Izbor najbolje varijante pobedničkog modela<a class="anchor-link" href="#Izbor-najbolje-varijante-pobedni%C4%8Dkog-modela">¶</a></h4><p>Na osnovu rezultata petostruke grupne unakrsne validacije bira se varijanta XGBoost modela sa najvećom prosečnom F1 vrednošću. Ako dve varijante imaju isti F1 rezultat, prednost se daje varijanti sa manjim brojem originalnih promenljivih.</p>
+<p>Izabrani pipeline i njegove CV metrike čuvaju se za naredno podešavanje hiperparametara. Test skup se ne koristi prilikom ovog izbora.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d8571054">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d8571054">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [75]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">selection_frequency</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="mi">20</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="mi">10</span><span class="p">:</span> <span class="p">[]</span>
-<span class="p">}</span>
-
-<span class="k">for</span> <span class="n">fold_train_indices</span><span class="p">,</span> <span class="n">fold_validation_indices</span> <span class="ow">in</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
-    <span class="n">X_train</span><span class="p">,</span>
-    <span class="n">y_train</span><span class="p">,</span>
-    <span class="n">groups</span><span class="o">=</span><span class="n">groups_train</span>
-<span class="p">):</span>
-    <span class="n">fold_selector</span> <span class="o">=</span> <span class="n">WinningModelFeatureSelector</span><span class="p">(</span>
-        <span class="n">estimator</span><span class="o">=</span><span class="n">winning_estimator</span><span class="p">,</span>
-        <span class="n">n_features</span><span class="o">=</span><span class="mi">20</span>
-    <span class="p">)</span>
-    <span class="n">fold_selector</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-        <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">fold_train_indices</span><span class="p">],</span>
-        <span class="n">y_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">fold_train_indices</span><span class="p">]</span>
-    <span class="p">)</span>
-
-    <span class="n">selection_frequency</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">fold_selector</span><span class="o">.</span><span class="n">selected_features_</span><span class="p">)</span>
-    <span class="n">selection_frequency</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">fold_selector</span><span class="o">.</span><span class="n">selected_features_</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
-
-<span class="n">top_20_frequency</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">selection_frequency</span><span class="p">[</span><span class="mi">20</span><span class="p">])</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-<span class="n">top_10_frequency</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">selection_frequency</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-
-<span class="n">selection_stability</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s2">"Originalna promenljiva"</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span>
-        <span class="nb">set</span><span class="p">(</span><span class="n">top_20_frequency</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">top_10_frequency</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">})</span>
-<span class="n">selection_stability</span><span class="p">[</span><span class="s2">"Izabrana u top 20 (od 5 foldova)"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">selection_stability</span><span class="p">[</span><span class="s2">"Originalna promenljiva"</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">top_20_frequency</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">selection_stability</span><span class="p">[</span><span class="s2">"Izabrana u top 10 (od 5 foldova)"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">selection_stability</span><span class="p">[</span><span class="s2">"Originalna promenljiva"</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">top_10_frequency</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">selection_stability</span> <span class="o">=</span> <span class="n">selection_stability</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
-    <span class="n">by</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">"Izabrana u top 10 (od 5 foldova)"</span><span class="p">,</span>
-        <span class="s2">"Izabrana u top 20 (od 5 foldova)"</span>
-    <span class="p">],</span>
-    <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">selection_stability</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Originalna promenljiva</th>
-<th>Izabrana u top 20 (od 5 foldova)</th>
-<th>Izabrana u top 10 (od 5 foldova)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>agent</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr>
-<th>1</th>
-<td>company</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr>
-<th>2</th>
-<td>country</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr>
-<th>3</th>
-<td>customer_type</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr>
-<th>4</th>
-<td>deposit_type</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr>
-<th>5</th>
-<td>market_segment</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr>
-<th>6</th>
-<td>previous_cancellation_rate</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr>
-<th>7</th>
-<td>required_car_parking_spaces</td>
-<td>5</td>
-<td>5</td>
-</tr>
-<tr>
-<th>8</th>
-<td>distribution_channel</td>
-<td>5</td>
-<td>4</td>
-</tr>
-<tr>
-<th>9</th>
-<td>lead_time_group</td>
-<td>5</td>
-<td>4</td>
-</tr>
-<tr>
-<th>10</th>
-<td>arrival_date_month</td>
-<td>5</td>
-<td>1</td>
-</tr>
-<tr>
-<th>11</th>
-<td>total_of_special_requests</td>
-<td>5</td>
-<td>1</td>
-</tr>
-<tr>
-<th>12</th>
-<td>arrival_date_year</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr>
-<th>13</th>
-<td>hotel</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr>
-<th>14</th>
-<td>lead_time</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr>
-<th>15</th>
-<td>meal</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr>
-<th>16</th>
-<td>previous_bookings_not_canceled</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr>
-<th>17</th>
-<td>reserved_room_type</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr>
-<th>18</th>
-<td>previous_cancellations</td>
-<td>4</td>
-<td>0</td>
-</tr>
-<tr>
-<th>19</th>
-<td>has_booking_history</td>
-<td>3</td>
-<td>0</td>
-</tr>
-<tr>
-<th>20</th>
-<td>arrival_season</td>
-<td>2</td>
-<td>0</td>
-</tr>
-<tr>
-<th>21</th>
-<td>total_previous_bookings</td>
-<td>1</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=009506a9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [76]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">best_winner_result</span> <span class="o">=</span> <span class="p">(</span>
@@ -18082,15 +17854,12 @@ XGBoost – top 10 -&gt; ['feature_selector', 'preprocessor', 'model']
     <span class="n">selected_winner_pipeline</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span>
         <span class="n">winner_selection_pipelines</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">winning_model_name</span><span class="si">}</span><span class="s2"> – top 20"</span><span class="p">]</span>
     <span class="p">)</span>
-    <span class="n">selected_winner_features</span> <span class="o">=</span> <span class="n">top_20_features</span>
 <span class="k">elif</span> <span class="n">best_winner_variant_name</span> <span class="o">==</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">winning_model_name</span><span class="si">}</span><span class="s2"> – top 10"</span><span class="p">:</span>
     <span class="n">selected_winner_pipeline</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span>
         <span class="n">winner_selection_pipelines</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">winning_model_name</span><span class="si">}</span><span class="s2"> – top 10"</span><span class="p">]</span>
     <span class="p">)</span>
-    <span class="n">selected_winner_features</span> <span class="o">=</span> <span class="n">top_10_features</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">selected_winner_pipeline</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">model_pipelines</span><span class="p">[</span><span class="n">winning_model_name</span><span class="p">])</span>
-    <span class="n">selected_winner_features</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
 <span class="n">metric_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Accuracy"</span><span class="p">,</span> <span class="s2">"Precision"</span><span class="p">,</span> <span class="s2">"Recall"</span><span class="p">,</span> <span class="s2">"F1"</span><span class="p">,</span> <span class="s2">"ROC-AUC"</span><span class="p">]</span>
 <span class="n">selected_winner_cv_results</span> <span class="o">=</span> <span class="p">{</span>
@@ -18101,13 +17870,23 @@ XGBoost – top 10 -&gt; ['feature_selector', 'preprocessor', 'model']
     <span class="n">metric</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">best_winner_result</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2"> SD"</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metric_names</span>
 <span class="p">}</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Najbolja varijanta pobedničkog modela:"</span><span class="p">,</span> <span class="n">best_winner_variant_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=009506a9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [76]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Najbolja varijanta pobedničkog modela:"</span><span class="p">,</span> <span class="n">best_winner_variant_name</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Broj izabranih promenljivih:"</span><span class="p">,</span> <span class="n">best_winner_feature_count</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"CV F1:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">selected_winner_cv_results</span><span class="p">[</span><span class="s2">"F1"</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"CV ROC-AUC:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">selected_winner_cv_results</span><span class="p">[</span><span class="s2">"ROC-AUC"</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Izabrane promenljive:"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">selected_winner_features</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Test skup nije korišćen za ovaj izbor."</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -18125,8 +17904,6 @@ XGBoost – top 10 -&gt; ['feature_selector', 'preprocessor', 'model']
 Broj izabranih promenljivih: 34
 CV F1: 0.806
 CV ROC-AUC: 0.9401
-Izabrane promenljive:
-['hotel', 'lead_time', 'arrival_date_year', 'arrival_date_month', 'arrival_date_week_number', 'arrival_date_day_of_month', 'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 'children', 'babies', 'meal', 'country', 'market_segment', 'distribution_channel', 'is_repeated_guest', 'previous_cancellations', 'previous_bookings_not_canceled', 'reserved_room_type', 'deposit_type', 'agent', 'company', 'customer_type', 'adr', 'required_car_parking_spaces', 'total_of_special_requests', 'total_stay', 'total_guests', 'has_children_or_babies', 'total_previous_bookings', 'has_booking_history', 'previous_cancellation_rate', 'arrival_season', 'lead_time_group']
 Test skup nije korišćen za ovaj izbor.
 </pre>
 </div>
@@ -21075,154 +20852,13 @@ Udeo otkazanih rezervacija u test skupu: 0.3708
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=numeric-error-analysis-heading">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="17.3.-Karakteristike-pogre%C5%A1no-klasifikovanih-rezervacija">17.3. Karakteristike pogrešno klasifikovanih rezervacija<a class="anchor-link" href="#17.3.-Karakteristike-pogre%C5%A1no-klasifikovanih-rezervacija">¶</a></h3><p>U ovom delu porede se osobine tačno i pogrešno klasifikovanih rezervacija. Za svaku grupu posmatraju se medijalne vrednosti odabranih numeričkih kolona. Medijana je pogodna za poređenje jer na nju ne utiču mnogo pojedinačne veoma visoke ili niske vrednosti.</p>
-<p>Na ovaj način može se proveriti da li rezervacije kod kojih model greši imaju neke zajedničke karakteristike i po čemu se razlikuju od pravilno klasifikovanih rezervacija.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=analyze-numeric-error-characteristics">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [101]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">error_numeric_columns</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">"lead_time"</span><span class="p">,</span>
-    <span class="s2">"adr"</span><span class="p">,</span>
-    <span class="s2">"total_stay"</span><span class="p">,</span>
-    <span class="s2">"total_guests"</span><span class="p">,</span>
-    <span class="s2">"previous_cancellations"</span><span class="p">,</span>
-    <span class="s2">"total_of_special_requests"</span>
-<span class="p">]</span>
-
-<span class="n">numeric_error_summary</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">error_analysis_df</span>
-    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Ishod predviđanja"</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="p">[</span><span class="n">error_numeric_columns</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">median</span><span class="p">()</span>
-    <span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">error_labels</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">numeric_error_summary</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>lead_time</th>
-<th>adr</th>
-<th>total_stay</th>
-<th>total_guests</th>
-<th>previous_cancellations</th>
-<th>total_of_special_requests</th>
-</tr>
-<tr>
-<th>Ishod predviđanja</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>Tačno prepoznata neotkazana</th>
-<td>41.0</td>
-<td>90.10</td>
-<td>3.0</td>
-<td>2.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr>
-<th>Lažno upozorenje</th>
-<td>90.0</td>
-<td>107.95</td>
-<td>3.0</td>
-<td>2.0</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr>
-<th>Propušteno otkazivanje</th>
-<td>41.0</td>
-<td>105.00</td>
-<td>3.0</td>
-<td>2.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr>
-<th>Tačno prepoznata otkazana</th>
-<td>125.0</td>
-<td>95.00</td>
-<td>3.0</td>
-<td>2.0</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=numeric-error-interpretation">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Tabela omogućava da se uporede tipične vrednosti rezervacija koje su pravilno i pogrešno klasifikovane. Sličnosti između grupa mogu objasniti zašto model neke rezervacije teže razlikuje.</p>
-</div>
-</div>
-</div>
-</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=group-error-analysis-heading">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="17.4.-Gre%C5%A1ke-prema-odabranim-grupama-rezervacija">17.4. Greške prema odabranim grupama rezervacija<a class="anchor-link" href="#17.4.-Gre%C5%A1ke-prema-odabranim-grupama-rezervacija">¶</a></h3><p>Posmatrane grupe nemaju isti broj rezervacija, zbog čega samo poređenje ukupnog broja grešaka ne bi bilo dovoljno. Zato se računa procenat stvarno otkazanih rezervacija koje model nije prepoznao, kao i procenat neotkazanih rezervacija koje je pogrešno označio kao otkazane.</p>
+<h3 id="17.3.-Gre%C5%A1ke-prema-odabranim-grupama-rezervacija">17.3. Greške prema odabranim grupama rezervacija<a class="anchor-link" href="#17.3.-Gre%C5%A1ke-prema-odabranim-grupama-rezervacija">¶</a></h3><p>Posmatrane grupe nemaju isti broj rezervacija, zbog čega samo poređenje ukupnog broja grešaka ne bi bilo dovoljno. Zato se računa procenat stvarno otkazanih rezervacija koje model nije prepoznao, kao i procenat neotkazanih rezervacija koje je pogrešno označio kao otkazane.</p>
 <p>Rezultati se porede prema tipu hotela, vrsti depozita, tržišnom segmentu i grupama promenljive <code>lead_time</code>. Ove promenljive su izabrane jer su se tokom eksplorativne analize i analize važnosti pokazale kao značajne za predviđanje otkazivanja.</p>
 </div>
 </div>
@@ -21232,7 +20868,7 @@ Udeo otkazanih rezervacija u test skupu: 0.3708
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [102]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [101]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_model_error_summary</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">column</span><span class="p">):</span>
@@ -21285,7 +20921,7 @@ Udeo otkazanih rezervacija u test skupu: 0.3708
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [103]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [102]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">error_group_columns</span> <span class="o">=</span> <span class="p">[</span>
@@ -21698,7 +21334,7 @@ Udeo otkazanih rezervacija u test skupu: 0.3708
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="17.5.-Tabela-TP,-TN,-FP-i-FN">17.5. Tabela TP, TN, FP i FN<a class="anchor-link" href="#17.5.-Tabela-TP,-TN,-FP-i-FN">¶</a></h3><p>Radi jasnijeg pregleda, rezultati se prikazuju i pomoću standardnih oznaka matrice konfuzije. TP i TN predstavljaju tačna predviđanja, dok FP označava lažno upozorenje, a FN propušteno otkazivanje.</p>
+<h3 id="17.4.-Tabela-TP,-TN,-FP-i-FN">17.4. Tabela TP, TN, FP i FN<a class="anchor-link" href="#17.4.-Tabela-TP,-TN,-FP-i-FN">¶</a></h3><p>Radi jasnijeg pregleda, rezultati se prikazuju i pomoću standardnih oznaka matrice konfuzije. TP i TN predstavljaju tačna predviđanja, dok FP označava lažno upozorenje, a FN propušteno otkazivanje.</p>
 </div>
 </div>
 </div>
@@ -21707,7 +21343,7 @@ Udeo otkazanih rezervacija u test skupu: 0.3708
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [104]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [103]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">confusion_counts</span> <span class="o">=</span> <span class="p">{</span>
@@ -21790,7 +21426,7 @@ Udeo otkazanih rezervacija u test skupu: 0.3708
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="17.6.-Primeri-FP-i-FN-gre%C5%A1aka">17.6. Primeri FP i FN grešaka<a class="anchor-link" href="#17.6.-Primeri-FP-i-FN-gre%C5%A1aka">¶</a></h3><p>U nastavku je prikazano po pet primera grešaka kod kojih je model bio najsigurniji u pogrešnu odluku. Za FP primere biraju se najveće procenjene verovatnoće otkazivanja, a za FN primere najmanje. Ovi primeri služe za ilustraciju i ne predstavljaju prosečnu grešku modela.</p>
+<h3 id="17.5.-Primeri-FP-i-FN-gre%C5%A1aka">17.5. Primeri FP i FN grešaka<a class="anchor-link" href="#17.5.-Primeri-FP-i-FN-gre%C5%A1aka">¶</a></h3><p>U nastavku je prikazano po pet primera grešaka kod kojih je model bio najsigurniji u pogrešnu odluku. Za FP primere biraju se najveće procenjene verovatnoće otkazivanja, a za FN primere najmanje. Ovi primeri služe za ilustraciju i ne predstavljaju prosečnu grešku modela.</p>
 </div>
 </div>
 </div>
@@ -21799,7 +21435,7 @@ Udeo otkazanih rezervacija u test skupu: 0.3708
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [105]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [104]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">example_columns</span> <span class="o">=</span> <span class="p">[</span>
@@ -21918,7 +21554,7 @@ Pet FN primera sa najmanjom procenjenom verovatnoćom otkazivanja:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="17.7.-Pore%C4%91enje-prema-tipu-hotela-i-tr%C5%BEi%C5%A1nom-segmentu">17.7. Poređenje prema tipu hotela i tržišnom segmentu<a class="anchor-link" href="#17.7.-Pore%C4%91enje-prema-tipu-hotela-i-tr%C5%BEi%C5%A1nom-segmentu">¶</a></h3><p>Kod gradskog hotela zabeležen je veći ukupan broj grešaka, što je očekivano jer je u test skupu imao više rezervacija. Stopa propuštenih otkazivanja bila je nešto veća kod resort hotela (<strong>19,72%</strong>) nego kod gradskog hotela (<strong>19,00%</strong>). Sa druge strane, stopa lažnih upozorenja bila je veća kod gradskog hotela (<strong>10,20%</strong>) nego kod resort hotela (<strong>6,95%</strong>).</p>
+<h3 id="17.6.-Pore%C4%91enje-prema-tipu-hotela-i-tr%C5%BEi%C5%A1nom-segmentu">17.6. Poređenje prema tipu hotela i tržišnom segmentu<a class="anchor-link" href="#17.6.-Pore%C4%91enje-prema-tipu-hotela-i-tr%C5%BEi%C5%A1nom-segmentu">¶</a></h3><p>Kod gradskog hotela zabeležen je veći ukupan broj grešaka, što je očekivano jer je u test skupu imao više rezervacija. Stopa propuštenih otkazivanja bila je nešto veća kod resort hotela (<strong>19,72%</strong>) nego kod gradskog hotela (<strong>19,00%</strong>). Sa druge strane, stopa lažnih upozorenja bila je veća kod gradskog hotela (<strong>10,20%</strong>) nego kod resort hotela (<strong>6,95%</strong>).</p>
 <p>Prema tržišnom segmentu, najveći apsolutni broj obe vrste grešaka pojavio se kod segmenta <code>Online TA</code>: <strong>1.090 FP</strong> i <strong>1.097 FN</strong>. Ovaj segment imao je i najveću stopu lažnih upozorenja među većim grupama (<strong>15,14%</strong>). Segment <code>Direct</code> imao je visoku stopu propuštenih otkazivanja od <strong>68,48%</strong>, dok su te stope kod segmenata <code>Groups</code> i <code>Offline TA/TO</code> bile znatno niže. Visoke procente kod malih grupa, kao što su <code>Aviation</code> i <code>Complementary</code>, treba tumačiti oprezno zbog malog broja rezervacija.</p>
 </div>
 </div>
@@ -21930,7 +21566,7 @@ Pet FN primera sa najmanjom procenjenom verovatnoćom otkazivanja:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="17.8.-Prakti%C4%8Dne-posledice-FP-i-FN-gre%C5%A1aka">17.8. Praktične posledice FP i FN grešaka<a class="anchor-link" href="#17.8.-Prakti%C4%8Dne-posledice-FP-i-FN-gre%C5%A1aka">¶</a></h3><p><strong>FP greška</strong> nastaje kada model predvidi otkazivanje, a gost ipak dođe. Ako bi hotel bez dodatne provere reagovao na takvu procenu, mogao bi nepotrebno da kontaktira gosta, zahteva dodatnu potvrdu ili rezervaciju pogrešno uključi u planiranje prebukiranosti. To može povećati troškove i negativno uticati na iskustvo gosta.</p>
+<h3 id="17.7.-Prakti%C4%8Dne-posledice-FP-i-FN-gre%C5%A1aka">17.7. Praktične posledice FP i FN grešaka<a class="anchor-link" href="#17.7.-Prakti%C4%8Dne-posledice-FP-i-FN-gre%C5%A1aka">¶</a></h3><p><strong>FP greška</strong> nastaje kada model predvidi otkazivanje, a gost ipak dođe. Ako bi hotel bez dodatne provere reagovao na takvu procenu, mogao bi nepotrebno da kontaktira gosta, zahteva dodatnu potvrdu ili rezervaciju pogrešno uključi u planiranje prebukiranosti. To može povećati troškove i negativno uticati na iskustvo gosta.</p>
 <p><strong>FN greška</strong> nastaje kada model očekuje da će rezervacija biti realizovana, a ona se ipak otkaže. Hotel tada može propustiti priliku da na vreme ponudi sobu drugom gostu, pa posledica može biti prazna soba i izgubljen prihod. U test skupu bilo je više FN nego FP grešaka (1.695 prema 1.341). Ipak, prag odlučivanja treba prilagoditi stvarnom odnosu troška propuštenog otkazivanja i lažnog upozorenja.</p>
 </div>
 </div>
@@ -21942,7 +21578,7 @@ Pet FN primera sa najmanjom procenjenom verovatnoćom otkazivanja:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="17.9.-Zaklju%C4%8Dak-analize-gre%C5%A1aka">17.9. Zaključak analize grešaka<a class="anchor-link" href="#17.9.-Zaklju%C4%8Dak-analize-gre%C5%A1aka">¶</a></h3><p>Konačni podešeni XGBoost je na test skupu pravilno klasifikovao <strong>20.807 od 23.843 rezervacije</strong>, dok je napravio ukupno <strong>3.036 grešaka</strong>. Od toga je bilo <strong>1.341 FP</strong> i <strong>1.695 FN</strong> slučajeva, pa je model češće propuštao stvarna otkazivanja nego što je stvarao lažna upozorenja.</p>
+<h3 id="17.8.-Zaklju%C4%8Dak-analize-gre%C5%A1aka">17.8. Zaključak analize grešaka<a class="anchor-link" href="#17.8.-Zaklju%C4%8Dak-analize-gre%C5%A1aka">¶</a></h3><p>Konačni podešeni XGBoost je na test skupu pravilno klasifikovao <strong>20.807 od 23.843 rezervacije</strong>, dok je napravio ukupno <strong>3.036 grešaka</strong>. Od toga je bilo <strong>1.341 FP</strong> i <strong>1.695 FN</strong> slučajeva, pa je model češće propuštao stvarna otkazivanja nego što je stvarao lažna upozorenja.</p>
 <p>Greške nisu bile jednako raspoređene. Resort hotel imao je veću stopu propuštenih otkazivanja, dok je gradski hotel imao veću stopu lažnih upozorenja. Segment <code>Online TA</code> izdvojio se najvećim apsolutnim brojem obe vrste grešaka, a kod segmenta <code>Direct</code> uočena je visoka stopa propuštenih otkazivanja. Analiza pojedinačnih primera dodatno pokazuje da model ponekad može biti relativno siguran i kada je njegova klasifikacija pogrešna.</p>
 <p>Zbog toga bi model u praksi trebalo koristiti kao podršku za procenu rizika, a ne kao jedini osnov za automatsku odluku o rezervaciji. Ova analiza koristi samo ranije dobijena test predviđanja i nije korišćena za promenu modela, praga, feature selection-a ili podešavanje hiperparametara.</p>
 </div>
