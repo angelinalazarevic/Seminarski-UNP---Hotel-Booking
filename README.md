@@ -7,7 +7,7 @@ Seminarski rad iz predmeta **Uvod u nauku o podacima**.
 * Milena Đukić 40/2020
 * Angelina Lazarević 66/2022
 
-**Profesor:** dr Branko Arsić
+**Profesor:** dr Branko Arsić  
 **Institut za matematiku i informatiku, Prirodno-matematički fakultet, Univerzitet u Kragujevcu**
 
 ## Opis projekta
